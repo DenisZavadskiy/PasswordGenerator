@@ -1,0 +1,46 @@
+﻿<Window x:Name="Password_Generator" x:Class="PasswordGenerator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Password Generator" Height="360" Width="525" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="Icons/Icon.ico">
+    <Window.Resources>
+        <Style x:Key="SliderStyle" TargetType="{x:Type Slider}">
+            <Setter Property="IsSelectionRangeEnabled" Value="True" />
+            <Setter Property="SelectionStart" Value="0" />
+            <Setter Property="SelectionEnd" Value="{Binding Value, RelativeSource={RelativeSource Self}}" />
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://application:,,,/Background/wrap_bg.png" ViewboxUnits="Absolute" ViewportUnits="Absolute" Viewport="0,0,100,100" Viewbox="0,0,100,100" TileMode="FlipXY"/>
+        </Grid.Background>
+
+        <Label Content="Пароль:" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Top" Width="85" />
+        <TextBox Name="tbPassword" HorizontalAlignment="Center" Height="50" FontSize="30" TextWrapping="Wrap" Text="WWWWWWWWWWWWWWWW" VerticalAlignment="Top" Width="499" HorizontalContentAlignment="Center" Margin="10,50,10,0" BorderThickness="0,0,0,1" FontFamily="Segoe UI Semibold" IsReadOnly="True" Background="Transparent"/>
+
+        <Button Name="btnGenerate" Padding="5,0,5,0" Content="Сгенерировать" HorizontalAlignment="Center" VerticalAlignment="Top" Height="70" FontSize="48" FontFamily="Gabriola" FontWeight="Bold" BorderThickness="0,0,2,4" Margin="108,130,109,0" BorderBrush="#FFBD8203" Click="btnGenerate_Click"  >
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="8" Opacity="0.3"/>
+            </Button.Effect>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#CCFF8E1D" Offset="0.993"/>
+                    <GradientStop Color="#FFFFF978"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Label Content="новый пароль длинной" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,210,0,0" Width="155" FontSize="13"/>
+        <Slider Name="symbolsCountSlider" Style="{StaticResource SliderStyle}" HorizontalAlignment="Center" Margin="0,231,0,0" VerticalAlignment="Top" Width="201" SmallChange="1" Maximum="16" Interval="100" SelectionStart="6" SelectionEnd="8" Minimum="6" IsSnapToTickEnabled="True" Value="8" IsSelectionRangeEnabled="True" IsMoveToPointEnabled="True" Background="Transparent" ValueChanged="symbolsCountSlider_ValueChanged">
+            <Slider.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#CCFF8E1D" />
+            </Slider.Resources>
+        </Slider>
+        <Label Name="symbolsCountLbl" Content="8 символов" HorizontalAlignment="Center" Margin="0,241,0,0" VerticalAlignment="Top" FontSize="13"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Label Content="используя" HorizontalAlignment="Left" Margin="0,266,0,0" VerticalAlignment="Top" FontSize="13"/>
+            <CheckBox Name="withNumber" Content="цифры" HorizontalAlignment="Left" Margin="0,272,0,0" VerticalAlignment="Top" FontSize="13"/>
+            <CheckBox Name="withSpecialSymbols" Content="спец. символы" HorizontalAlignment="Left" Margin="2,272,0,0" VerticalAlignment="Top" FontSize="13"/>
+        </StackPanel>
+        <Label Content="© Password Generator, 2016" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="10"></Label>
+    </Grid>
+</Window>
